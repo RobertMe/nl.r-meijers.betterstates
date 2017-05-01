@@ -1,0 +1,348 @@
+{
+    "id": "nl.r-meijers.betterstates",
+    "name": {
+        "en": "Better States",
+        "nl": "Better States"
+    },
+    "version": "0.0.1",
+    "compatibility": "0.x || 1.x",
+    "author": {
+        "name": "Robert Meijers",
+        "email": "betterstates@r-meijers.nl"
+    },
+    "drivers": [
+        {
+            "id": "linear",
+            "name": {
+                "en": "Linear",
+                "nl": "Lineair"
+            },
+            "capabilities": [],
+            "class": "other",
+            "pair": [
+                {
+                    "id": "setup"
+                }
+            ]
+        },
+        {
+            "id": "priority_stacked",
+            "name": {
+                "en": "Stacked by priority",
+                "nl": "Gestapeld op prioriteit"
+            },
+            "capabilities": [],
+            "class": "other",
+            "pair": [
+                {
+                    "id": "setup"
+                }
+            ]
+        }
+    ],
+    "flow": {
+        "triggers": [
+            {
+                "id": "linear_state_activated",
+                "title": {
+                    "en": "A state is activated",
+                    "nl": "Een toestand is geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "linear_state_deactivated",
+                "title": {
+                    "en": "A state is deactivated",
+                    "nl": "Een toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "linear_state_changed",
+                "title": {
+                    "en": "The state changed",
+                    "nl": "De toestand is veranderd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "name": "old_state",
+                        "title": {
+                            "en": "Old state",
+                            "nl": "Oude toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    },
+                    {
+                        "name": "new_state",
+                        "title": {
+                            "en": "New state",
+                            "nl": "Nieuwe toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_state_activated",
+                "title": {
+                    "en": "A state is activated",
+                    "nl": "Een toestand is geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_state_deactivated",
+                "title": {
+                    "en": "A state is deactivated",
+                    "nl": "Een toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_state_changed",
+                "title": {
+                    "en": "The state changed",
+                    "nl": "De toestand is veranderd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "name": "old_state",
+                        "title": {
+                            "en": "Old state",
+                            "nl": "Oude toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    },
+                    {
+                        "name": "new_state",
+                        "title": {
+                            "en": "New state",
+                            "nl": "Nieuwe toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    }
+                ]
+            }
+        ],
+        "conditions": [
+            {
+                "id": "linear_equals",
+                "title": {
+                    "en": "!{{equals|does not equal}}",
+                    "nl": "!{{is gelijk aan|is niet gelijk aan}}"
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_equals",
+                "title": {
+                    "en": "!{{equals|does not equal}}",
+                    "nl": "!{{is gelijk aan|is niet gelijk aan}}"
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_before",
+                "title": {
+                    "en": "applies !{{before|not before}}",
+                    "nl": "komt !{{voor|niet voor}}"
+                },
+                "hint": {
+                    "en": "Applies when the given state has a higher priority as the selected state.",
+                    "nl": "Wordt toegepast als de opgegeven toestand een hogere prioriteit heeft als de geselecteerde toestand."
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_after",
+                "title": {
+                    "en": "applies !{{after|not after}}",
+                    "nl": "komt !{{na|niet na}}"
+                },
+                "hint": {
+                    "en": "Applies when the given state has a lower priority as the selected state.",
+                    "nl": "Wordt toegepast als de opgegeven toestand een lagere prioriteit heeft als de geselecteerde toestand."
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_default",
+                "title": {
+                    "en": "is !{{|not }}the default",
+                    "nl": "is !{{|niet }} de standaard"
+                },
+                "hint": {
+                    "en": "Applies when the given state is the default state",
+                    "nl": "Wordt toegepast als de opgegeven toestand de standaard toestand is"
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "id": "linear_activate_state",
+                "title": {
+                    "en": "Activate a state",
+                    "nl": "Activeer een toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_activate_state",
+                "title": {
+                    "en": "Activate a state",
+                    "nl": "Activeer een toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_deactivate_state",
+                "title": {
+                    "en": "Deactivate a state",
+                    "nl": "Deactiveer een toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            }
+        ]
+    }
+}

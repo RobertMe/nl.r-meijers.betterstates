@@ -1,0 +1,14 @@
+{
+    "container": {
+        "linearPlaceholder": "Naam",
+        "stackedPlaceholder": "Naam van de stapel"
+    },
+    "state": {
+        "name": "Naam",
+        "placeholder": "Naam van de toestand",
+        "add": "Toevoegen",
+        "linearListDescription": "Configureer hieronder de toestanden.",
+        "priorityStackedListDescription": "Configureer hieronder de toestanden waarin deze stapel zich kan bevinden. De volgorde van de toestanden bepaald hierbij de prioriteit die aan de toestand wordt gegeven. Een hogere positiie in de lijst betekend een hoger prioriteit."
+    },
+    "save": "Opslaan"
+}
