@@ -342,6 +342,28 @@
                         "type": "autocomplete"
                     }
                 ]
+            },
+            {
+                "id": "priority_stacked_toggle_state",
+                "title": {
+                    "en": "Toggle a state",
+                    "nl": "Wissel een toestand"
+                },
+                "hint": {
+                    "en": "Activate a state when it is deactivated, and vice versa",
+                    "nl": "Activeer een toestand wanneer deze gedeactiveerd is en vice versa"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
             }
         ]
     }
