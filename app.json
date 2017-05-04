@@ -310,8 +310,8 @@
             {
                 "id": "priority_stacked_activate_state",
                 "title": {
-                    "en": "Activate a state",
-                    "nl": "Activeer een toestand"
+                    "en": "Enable a state",
+                    "nl": "Schakel een toestand in"
                 },
                 "args": [
                     {
@@ -328,8 +328,8 @@
             {
                 "id": "priority_stacked_deactivate_state",
                 "title": {
-                    "en": "Deactivate a state",
-                    "nl": "Deactiveer een toestand"
+                    "en": "Disable a state",
+                    "nl": "Schakel een toestand uit"
                 },
                 "args": [
                     {
@@ -350,8 +350,8 @@
                     "nl": "Wissel een toestand"
                 },
                 "hint": {
-                    "en": "Activate a state when it is deactivated, and vice versa",
-                    "nl": "Activeer een toestand wanneer deze gedeactiveerd is en vice versa"
+                    "en": "Enable a state when it is disabled, and vice versa",
+                    "nl": "Schakel een toestand in wanneer deze uitgeschakeld is en vice versa"
                 },
                 "args": [
                     {
