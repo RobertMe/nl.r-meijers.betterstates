@@ -286,6 +286,28 @@
                         "filter": "driver_id=priority_stacked"
                     }
                 ]
+            },
+            {
+                "id": "priority_stacked_enabled",
+                "title": {
+                    "en": "State is !{{enabled|disabled}}",
+                    "nl": "Toestand is !{{ingeschakeld|uitgeschakeld}}"
+                },
+                "hint": {
+                    "en": "Check if the given state is enabled. Enabled doesn't actually mean that it's active, as another state might overrule it.",
+                    "nl": "Controleer of de opgegeven toestand is ingeschakeld. Ingeschakeld betekend niet dat deze ook actief is, aangezien een andere toestand deze kan overstemmen."
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
             }
         ],
         "actions": [

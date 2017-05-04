@@ -12,11 +12,13 @@ class StateContainerDriver extends SingleStateContainerDriver {
             .on('action.priority_stacked_toggle_state.state.autocomplete', this._onFlowAutoCompleteState.bind(this))
             .on('condition.priority_stacked_before.state.autocomplete', this._onFlowAutoCompleteState.bind(this))
             .on('condition.priority_stacked_after.state.autocomplete', this._onFlowAutoCompleteState.bind(this))
+            .on('condition.priority_stacked_enabled.state.autocomplete', this._onFlowAutoCompleteState.bind(this))
             .on('action.priority_stacked_deactivate_state', this._onFlowActionDeactivateState.bind(this))
             .on('action.priority_stacked_toggle_state', this._onFlowActionToggleState.bind(this))
             .on('condition.priority_stacked_before', this._onFlowConditionBefore.bind(this))
             .on('condition.priority_stacked_after', this._onFlowConditionAfter.bind(this))
             .on('condition.priority_stacked_default', this._onFlowConditionDefault.bind(this))
+            .on('condition.priority_stacked_enabled', this._onFlowConditionEnabled.bind(this))
         ;
     }
 
@@ -73,6 +75,20 @@ class StateContainerDriver extends SingleStateContainerDriver {
                 args.droptoken === container.getDefaultState().name :
                 args.droptoken === container.getDefaultState().id
         );
+    }
+
+    _onFlowConditionEnabled(callback, args) {
+        const container = this.getContainer(args.device);
+        if (container instanceof Error) {
+            return callback(container);
+        }
+
+        const isEnabled = container.isEnabled(args.state);
+        if (isEnabled instanceof Error) {
+            return callback(isEnabled);
+        }
+
+        callback(null, isEnabled);
     }
 
     _onFlowActionDeactivateState(callback, args) {
