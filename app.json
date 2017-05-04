@@ -286,6 +286,28 @@
                         "filter": "driver_id=priority_stacked"
                     }
                 ]
+            },
+            {
+                "id": "priority_stacked_enabled",
+                "title": {
+                    "en": "State is !{{enabled|disabled}}",
+                    "nl": "Toestand is !{{ingeschakeld|uitgeschakeld}}"
+                },
+                "hint": {
+                    "en": "Check if the given state is enabled. Enabled doesn't actually mean that it's active, as another state might overrule it.",
+                    "nl": "Controleer of de opgegeven toestand is ingeschakeld. Ingeschakeld betekend niet dat deze ook actief is, aangezien een andere toestand deze kan overstemmen."
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
             }
         ],
         "actions": [
@@ -310,8 +332,8 @@
             {
                 "id": "priority_stacked_activate_state",
                 "title": {
-                    "en": "Activate a state",
-                    "nl": "Activeer een toestand"
+                    "en": "Enable a state",
+                    "nl": "Schakel een toestand in"
                 },
                 "args": [
                     {
@@ -328,8 +350,30 @@
             {
                 "id": "priority_stacked_deactivate_state",
                 "title": {
-                    "en": "Deactivate a state",
-                    "nl": "Deactiveer een toestand"
+                    "en": "Disable a state",
+                    "nl": "Schakel een toestand uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_toggle_state",
+                "title": {
+                    "en": "Toggle a state",
+                    "nl": "Wissel een toestand"
+                },
+                "hint": {
+                    "en": "Enable a state when it is disabled, and vice versa",
+                    "nl": "Schakel een toestand in wanneer deze uitgeschakeld is en vice versa"
                 },
                 "args": [
                     {
