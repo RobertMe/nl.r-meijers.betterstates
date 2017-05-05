@@ -6,6 +6,8 @@
     "state": {
         "name": "Name",
         "placeholder": "State name",
+        "activationDelayPlaceholder": "Enable delay",
+        "deactivationDelayPlaceholder": "Disable delay",
         "add": "Add",
         "linearListDescription": "Configure the states below.",
         "priorityStackedListDescription": "Configure the states of the stack below. The order of the states determines the priority of the state. A higher position in the list means a higher priority."

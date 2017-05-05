@@ -18,7 +18,7 @@
     overflow: auto;
 }
 
-input[type=text] {
+input[type=text], input[type="number"] {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -33,7 +33,7 @@ ul.states {
 }
 
 ul.states input {
-    width: 300px;
+    width: 200px;
 }
 
 ul.states li {
@@ -79,6 +79,7 @@ function onAngularLoad() {
             $scope.str = {
                 namePlaceholder: __('container.linearPlaceholder'),
                 statePlaceholder: __('state.placeholder'),
+                activationDelayPlaceholder: __('state.activationDelayPlaceholder'),
                 addState: __('state.add'),
                 listDescription: __('state.linearListDescription'),
                 save: __('save')
@@ -87,11 +88,11 @@ function onAngularLoad() {
             $scope.name = '';
             var stateId = 1;
             $scope.states = [
-                {id: stateId++, name: ''}
+                {id: stateId++, name: '', activationDelay: null}
             ];
 
             $scope.addState = function() {
-                $scope.states.push({id: stateId++, name: ''});
+                $scope.states.push({id: stateId++, name: '', activationDelay: null});
             };
 
             $scope.removeState = function(index) {
@@ -102,7 +103,12 @@ function onAngularLoad() {
             $scope.submit = function() {
                 var states = $scope.states
                     .filter(function(s) { return s.name !== ''; })
-                    .map(function(s) { return {name: s.name} })
+                    .map(function(s) {
+                        return {
+                            name: s.name,
+                            activationDelay: parseInt(s.activationDelay, 10) || 0
+                        }
+                    })
                 ;
                 Homey.emit('save_settings', {
                     name: $scope.name,
@@ -139,6 +145,7 @@ function onAngularLoad() {
             <li ng-repeat="state in states track by state.id">
                 <div class="input-group enabled">
                     <input type="text" ng-model="state.name" placeholder="{{str.statePlaceholder}}"/>
+                    <input type="number" min="0" class="delay" ng-model="state.activationDelay" placeholder="{{str.activationDelayPlaceholder}}"/>
                     <button ng-click="removeState($index)" class="remove fa fa-times"></button>
                 </div>
             </li>
