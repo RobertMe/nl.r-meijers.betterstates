@@ -185,10 +185,28 @@
         ],
         "conditions": [
             {
+                "id": "linear_active_equals",
+                "title": {
+                    "en": "current state !{{equals|does not equal}}",
+                    "nl": "huidige toestand !{{is|is niet}}"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=linear"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
                 "id": "linear_equals",
                 "title": {
-                    "en": "!{{equals|does not equal}}",
-                    "nl": "!{{is gelijk aan|is niet gelijk aan}}"
+                    "en": "!{{is |is not}}",
+                    "nl": "!{{is|is niet}}"
                 },
                 "droptoken": "string",
                 "args": [
@@ -204,10 +222,28 @@
                 ]
             },
             {
+                "id": "priority_stacked_active_equals",
+                "title": {
+                    "en": "active state !{{equals|does not equal}}",
+                    "nl": "actieve toestand !{{is |is niet}}"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
                 "id": "priority_stacked_equals",
                 "title": {
-                    "en": "!{{equals|does not equal}}",
-                    "nl": "!{{is gelijk aan|is niet gelijk aan}}"
+                    "en": "!{{is|is not}}",
+                    "nl": "!{{is|is niet}}"
                 },
                 "droptoken": "string",
                 "args": [
