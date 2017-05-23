@@ -26,6 +26,30 @@ class StateContainerDriver extends SingleStateContainerDriver {
         return new StateContainer(settings);
     }
 
+    _triggerStateDeactivated(deviceData, triggerState) {
+        super._triggerStateDeactivated(deviceData, triggerState);
+
+        if (triggerState.oldState.id === triggerState.container.getDefaultState().id) {
+            Homey.manager('flow').triggerDevice(`priority_stacked_default_deactivated`, {}, triggerState, deviceData, (err) => {
+                if (err) {
+                    Homey.app.error(`Error triggering priority stacked default deactivated`, err);
+                }
+            });
+        }
+    }
+
+    _triggerStateActivated(deviceData, triggerState) {
+        if (triggerState.newState.id === triggerState.container.getDefaultState().id) {
+            Homey.manager('flow').triggerDevice(`priority_stacked_default_activated`, {}, triggerState, deviceData, (err) => {
+                if (err) {
+                    Homey.app.error(`Error triggering priority stacked default activated`, err);
+                }
+            });
+        }
+
+        super._triggerStateActivated(deviceData, triggerState);
+    }
+
     _onFlowConditionBefore(callback, args) {
         const container = this.getContainer(args.device);
         if (container instanceof Error) {

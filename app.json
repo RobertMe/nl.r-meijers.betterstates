@@ -149,6 +149,34 @@
                 ]
             },
             {
+                "id": "priority_stacked_default_activated",
+                "title": {
+                    "en": "Default state is activated",
+                    "nl": "Standaard toestand is geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    }
+                ]
+            },
+            {
+                "id": "priority_stacked_default_deactivated",
+                "title": {
+                    "en": "Default state is deactivated",
+                    "nl": "Standaard toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    }
+                ]
+            },
+            {
                 "id": "priority_stacked_state_changed",
                 "title": {
                     "en": "The state changed",
