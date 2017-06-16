@@ -38,6 +38,20 @@
                     "id": "setup"
                 }
             ]
+        },
+        {
+            "id": "cycling",
+            "name": {
+                "en": "Cycling",
+                "nl": "Cyclus"
+            },
+            "capabilities": [],
+            "class": "other",
+            "pair": [
+                {
+                    "id": "setup"
+                }
+            ]
         }
     ],
     "flow": {
@@ -187,6 +201,76 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=priority_stacked"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "name": "old_state",
+                        "title": {
+                            "en": "Old state",
+                            "nl": "Oude toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    },
+                    {
+                        "name": "new_state",
+                        "title": {
+                            "en": "New state",
+                            "nl": "Nieuwe toestand"
+                        },
+                        "type": "string",
+                        "example": ""
+                    }
+                ]
+            },
+            {
+                "id": "cycling_state_activated",
+                "title": {
+                    "en": "A state is activated",
+                    "nl": "Een toestand is geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_state_deactivated",
+                "title": {
+                    "en": "A state is deactivated",
+                    "nl": "Een toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_state_changed",
+                "title": {
+                    "en": "The state changed",
+                    "nl": "De toestand is veranderd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
                     }
                 ],
                 "tokens": [
@@ -372,6 +456,43 @@
                         "type": "autocomplete"
                     }
                 ]
+            },
+            {
+                "id": "cycling_active_equals",
+                "title": {
+                    "en": "current state !{{equals|does not equal}}",
+                    "nl": "huidige toestand !{{is|is niet}}"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_equals",
+                "title": {
+                    "en": "!{{is |is not}}",
+                    "nl": "!{{is|is niet}}"
+                },
+                "droptoken": "string",
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
             }
         ],
         "actions": [
@@ -448,6 +569,52 @@
                     {
                         "name": "state",
                         "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_activate_state",
+                "title": {
+                    "en": "Activate a state",
+                    "nl": "Activeer een toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_forward",
+                "title": {
+                    "en": "Activate the next state",
+                    "nl": "Activeer de volgende toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
+                    }
+                ]
+            },
+            {
+                "id": "cycling_backward",
+                "title": {
+                    "en": "Activate the previous state",
+                    "nl": "Activeer de vorige toestand"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=cycling"
                     }
                 ]
             }
