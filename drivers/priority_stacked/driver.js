@@ -15,6 +15,7 @@ class StateContainerDriver extends SingleStateContainerDriver {
             .on('condition.priority_stacked_enabled.state.autocomplete', this._onFlowAutoCompleteState.bind(this))
             .on('action.priority_stacked_deactivate_state', this._onFlowActionDeactivateState.bind(this))
             .on('action.priority_stacked_toggle_state', this._onFlowActionToggleState.bind(this))
+            .on('action.priority_stacked_unwind_default', this._onFlowActionUnwindToDefault.bind(this))
             .on('condition.priority_stacked_before', this._onFlowConditionBefore.bind(this))
             .on('condition.priority_stacked_after', this._onFlowConditionAfter.bind(this))
             .on('condition.priority_stacked_default', this._onFlowConditionDefault.bind(this))
@@ -133,6 +134,17 @@ class StateContainerDriver extends SingleStateContainerDriver {
         }
 
         container.toggle(args.state.id);
+
+        callback(null, true);
+    }
+
+    _onFlowActionUnwindToDefault(callback, args) {
+        const container = this.getContainer(args.device);
+        if (container instanceof Error) {
+            return callback(container);
+        }
+
+        container.unwindToDefault(0);
 
         callback(null, true);
     }

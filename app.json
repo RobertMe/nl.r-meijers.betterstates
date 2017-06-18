@@ -573,6 +573,24 @@
                 ]
             },
             {
+                "id": "priority_stacked_unwind_default",
+                "title": {
+                    "en": "Deactivate all",
+                    "nl": "Deactiveer alle"
+                },
+                "hint": {
+                    "en": "Deactivate all states so the default is activated",
+                    "nl": "Schakel alle toestanden uit zodat de standaard actief is"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=priority_stacked"
+                    }
+                ]
+            },
+            {
                 "id": "cycling_activate_state",
                 "title": {
                     "en": "Activate a state",
