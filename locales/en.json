@@ -2,7 +2,8 @@
     "container": {
         "linearPlaceholder": "Name",
         "stackedPlaceholder": "Stack name",
-        "cyclingPlaceholder": "Name of the cycle"
+        "cyclingPlaceholder": "Name of the cycle",
+        "setPlaceholder": "Name of the set"
     },
     "state": {
         "name": "Name",
@@ -12,7 +13,8 @@
         "add": "Add",
         "linearListDescription": "Configure the states below.",
         "priorityStackedListDescription": "Configure the states of the stack below. The order of the states determines the priority of the state. A higher position in the list means a higher priority.",
-        "cyclingListDescription": "Configure the states below. The order of the states determines there order in the cycle."
+        "cyclingListDescription": "Configure the states below. The order of the states determines there order in the cycle.",
+        "setListDescription": "Configure the states below."
     },
     "save": "Save"
 }

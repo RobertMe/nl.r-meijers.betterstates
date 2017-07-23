@@ -52,6 +52,20 @@
                     "id": "setup"
                 }
             ]
+        },
+        {
+            "id": "set",
+            "name": {
+                "en": "Set",
+                "nl": "Verzameling"
+            },
+            "capabilities": [],
+            "class": "other",
+            "pair": [
+                {
+                    "id": "setup"
+                }
+            ]
         }
     ],
     "flow": {
@@ -293,6 +307,70 @@
                         "example": ""
                     }
                 ]
+            },
+            {
+                "id": "set_state_activated",
+                "title": {
+                    "en": "A state is activated",
+                    "nl": "Een toestand is geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "set_state_deactivated",
+                "title": {
+                    "en": "A state is deactivated",
+                    "nl": "Een toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "set_none_activated",
+                "title": {
+                    "en": "The last state is deactivated",
+                    "nl": "De laatste toestand is gedeactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    }
+                ]
+            },
+            {
+                "id": "set_some_activated",
+                "title": {
+                    "en": "A first state is activated",
+                    "nl": "Een eerste toestand wordt geactiveerd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    }
+                ]
             }
         ],
         "conditions": [
@@ -493,6 +571,38 @@
                         "type": "autocomplete"
                     }
                 ]
+            },
+            {
+                "id": "set_is_active",
+                "title": {
+                    "en": "state is !{{active|inactive}}",
+                    "nl": "toestand is !{{actief|inactief}}"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "set_none_active",
+                "title": {
+                    "en": "!{{No state active|At least one state active}}",
+                    "nl": "!{{Geen toestand actief|Minstens een toestand actief}}"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    }
+                ]
             }
         ],
         "actions": [
@@ -633,6 +743,42 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=cycling"
+                    }
+                ]
+            },
+            {
+                "id": "set_activate_state",
+                "title": {
+                    "en": "Enable a state",
+                    "nl": "Schakel een toestand in"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
+                    }
+                ]
+            },
+            {
+                "id": "set_deactivate_state",
+                "title": {
+                    "en": "Disable a state",
+                    "nl": "Schakel een toestand uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=set"
+                    },
+                    {
+                        "name": "state",
+                        "type": "autocomplete"
                     }
                 ]
             }

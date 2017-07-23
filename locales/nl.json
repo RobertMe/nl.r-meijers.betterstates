@@ -2,7 +2,8 @@
     "container": {
         "linearPlaceholder": "Naam",
         "stackedPlaceholder": "Naam van de stapel",
-        "cyclingPlaceholder": "Naam van de cyclus"
+        "cyclingPlaceholder": "Naam van de cyclus",
+        "setPlaceholder": "Naam van de verzameling"
     },
     "state": {
         "name": "Naam",
@@ -12,7 +13,8 @@
         "add": "Toevoegen",
         "linearListDescription": "Configureer hieronder de toestanden.",
         "priorityStackedListDescription": "Configureer hieronder de toestanden waarin deze stapel zich kan bevinden. De volgorde van de toestanden bepaald hierbij de prioriteit die aan de toestand wordt gegeven. Een hogere positiie in de lijst betekend een hoger prioriteit.",
-        "cyclingListDescription": "Configureer hieronder de toestanden. De volgorde waarin deze toestanden zijn gedefinieerd bepaald ook de volgorde van de cyclus."
+        "cyclingListDescription": "Configureer hieronder de toestanden. De volgorde waarin deze toestanden zijn gedefinieerd bepaald ook de volgorde van de cyclus.",
+        "setListDescription": "Configureer hieronder de toestanden."
     },
     "save": "Opslaan"
 }

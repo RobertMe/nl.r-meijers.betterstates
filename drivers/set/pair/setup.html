@@ -1,0 +1,167 @@
+<style type="text/css">
+#stateApp {
+    height: 100%;
+}
+
+#stateApp > form {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+#stateApp > form > * {
+    flex: 0 0;
+}
+
+#stateApp .states {
+    flex: 0 1;
+    overflow: auto;
+}
+
+input[type=text], input[type="number"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+ul.states {
+    margin-bottom: 10px;
+    padding-bottom: 0;
+}
+
+ul.states input {
+    width: 200px;
+}
+
+ul.states li {
+    margin-top: 10px;
+}
+
+ul.states li:first-child {
+    margin-top: 0;
+}
+
+ul.states .remove {
+    background: none;
+    border: none;
+}
+
+button .fa {
+    margin-left: 5px;
+}
+
+.navigation {
+    overflow: hidden;
+}
+
+.save {
+    float: right;
+}
+</style>
+
+<script type="text/javascript">
+Homey.on('done', function() {
+    Homey.done();
+});
+
+var scriptEl = document.createElement('script');
+	scriptEl.src = '/manager/webserver/assets/js/angular.js';
+	scriptEl.addEventListener('load', onAngularLoad);
+
+document.getElementsByTagName('head')[0].appendChild(scriptEl);
+
+function onAngularLoad() {
+    angular.module('stateApp', [])
+        .controller('stateCtrl', ['$scope', function($scope) {
+            $scope.str = {
+                namePlaceholder: __('container.setPlaceholder'),
+                statePlaceholder: __('state.placeholder'),
+                activationDelayPlaceholder: __('state.activationDelayPlaceholder'),
+                deactivationDelayPlaceholder: __('state.deactivationDelayPlaceholder'),
+                addState: __('state.add'),
+                listDescription: __('state.setListDescription'),
+                save: __('save')
+            };
+
+            $scope.name = '';
+            var stateId = 1;
+            $scope.states = [
+                {id: stateId++, name: '', activationDelay: null, deactivationDelay: null}
+            ];
+
+            $scope.addState = function() {
+                $scope.states.push({id: stateId++, name: '', activationDelay: null, deactivationDelay: null});
+            };
+
+            $scope.removeState = function(index) {
+                $scope.states.splice(index, 1);
+            };
+
+
+            $scope.submit = function() {
+                var id = 1;
+                var states = $scope.states
+                    .filter(function(s) { return s.name !== ''; })
+                    .map(function(s) {
+                        return {
+                            name: s.name,
+                            activationDelay: parseInt(s.activationDelay, 10) || 0,
+                            deactivationDelay: parseInt(s.deactivationDelay, 10) || 0
+                        }
+                    })
+                ;
+                Homey.emit('save_settings', {
+                    name: $scope.name,
+                    states: states,
+                    nextStateId: id,
+                }, function(err, deviceId) {
+                    if (deviceId) {
+                        Homey.addDevice({
+                            data: {
+                                id: deviceId
+                            },
+                            name: $scope.name
+                        }, function(err, result) {
+                            Homey.done();
+                        });
+                    }
+                });
+            };
+        }]);
+
+    angular.element(document).ready(function() {
+        angular.bootstrap(document.getElementById('stateApp'), ['stateApp']);
+    });
+}
+</script>
+
+<div id="stateApp" ng-controller="stateCtrl">
+    <form>
+        <div class="input-group enabled">
+            <input type="text" ng-model="name" placeholder="{{str.namePlaceholder}}"/>
+        </div>
+
+        <p ng-bind="str.listDescription">
+        <ul class="states">
+            <li ng-repeat="state in states track by state.id">
+                <div class="input-group enabled">
+                    <input type="text" ng-model="state.name" placeholder="{{str.statePlaceholder}}"/>
+                    <input type="number" min="0" class="delay" ng-model="state.activationDelay" placeholder="{{str.activationDelayPlaceholder}}"/>
+                    <input type="number" min="0" class="delay" ng-model="state.deactivationDelay" placeholder="{{str.deactivationDelayPlaceholder}}"/>
+                    <button ng-click="removeState($index)" class="remove fa fa-times"></button>
+                </div>
+            </li>
+        </ul>
+
+        <div>
+            <button class="button" ng-click="addState()"><span ng-bind="str.addState"></span><i class="fa fa-plus"></i></button>
+        </div>
+
+        <div class="navigation">
+            <button class="button save" ng-click="submit()"><span ng-bind="str.save"></span><i class="fa fa-floppy-o"></i></button>
+        </div>
+    </form>
+</div>
